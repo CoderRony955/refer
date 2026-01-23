@@ -23,6 +23,9 @@ async def main():
         else:
             console.print(
                 f"[bold green]{random.choice(Keywords.success_keywords)}[/bold green]\n")
+            startup.commands_display()
+            commands_handler = Handler()
+            await commands_handler.main_handler()
     else:
         try:
             await startup.check_config_file()
