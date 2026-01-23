@@ -83,11 +83,17 @@ class OnStartup:
             console.print(
                 "Alright! It seems like you don't want to use refer local db. 😃")
 
-            # create config file to store all credentials
-        credentials = {
-            "password": password,
-            "referdb_location": location or None
-        }
+        # create config file to store all credentials
+        if location:
+            credentials = {
+                "password": password,
+                "referdb_location": f"{location}\\referdb"
+            }
+        else:
+            credentials = {
+                "password": password,
+                "referdb_location": None
+            }
         with open('referconfig.yaml', 'w') as file:
             yaml.safe_dump(credentials, file, sort_keys=False)
 
