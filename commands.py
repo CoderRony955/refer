@@ -65,8 +65,4 @@ class AllCommands:
             "for": "Share multiple packages in available webpage template. After running command refer display all available templates options, you can choose any one of them ",
             "example": "referwith -template -message \'This is the cli tools for xyz.\' -paths \'C:\\Users\\<name>\\CLITools\\cli_tool1\\ C:\\Users\\<name>\\CLITools\\cli_tool2\\ \'"
         },
-        "referwith -template -pkgs \'name of packages\'": {
-            "for": "Share multiple packages in available webpage template. After running command refer display all available templates options, you can choose any one of them ",
-            "example": "referwith -template \'This is the cli tools for xyz.\' -pkgs \'cli_app1 cli_app2 cli_app3\'"
-        },
     }

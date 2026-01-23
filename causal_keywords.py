@@ -49,14 +49,14 @@ class Keywords:
     ]
 
     bye_keywords = [
-    "Bye!",
-    "See ya!",
-    "See you!",
-    "Catch you later!",
-    "Later!",
-    "Peace out!",
-    "Take care!",
-    "Until next time!",
-    "Cya!",
-    "Adios!"
+        "Bye!",
+        "See ya!",
+        "See you!",
+        "Catch you later!",
+        "Later!",
+        "Peace out!",
+        "Take care!",
+        "Until next time!",
+        "Cya!",
+        "Adios!"
     ]
