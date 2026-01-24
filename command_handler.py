@@ -16,8 +16,13 @@ class Handler:
         while True:
             try:
                 user = Prompt.ask("\n[bold]>_[/bold] ")
-                # display about refer
-                if user.lower() == "about":
+
+                # if user enter without typing anything then ignore
+                if not user:
+                    pass
+
+                # display about refer in proper markdown format
+                elif user.lower() == "about":
                     about.show_about()
 
                 # display usage documentation
@@ -39,12 +44,8 @@ class Handler:
                         console.print(
                             "[red]Wrong use of[/red] changedb [red]command![/red]\n[bold]Use like this:[/bold] changedb C:\\Users\\Your-Name\\OneDrive\\SecretFolder\n")
                         continue
-                    
+
                     changedb.change_refer_db(user.lower().split()[1])
-                    
-                # if user enter without typing anything then ignore
-                elif user == "":
-                    pass
 
                 # display all available options
                 elif user == "help" or user == "h":
