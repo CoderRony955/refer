@@ -5,7 +5,7 @@ class AllCommands:
         "usage": "See the basic [bold]DOCUMENTATION[/bold] about how to use [bold]refer[/bold]",
         "contribute": "Redirects you to [green]refer's official Github repository[/green]",
         "wheredb": "See the path of refer's local DB folder",
-        "changedb": "Change refer's local DB folder location [green](Without lossing data)[/green]"
+        "changedb <path>": "Change refer's local DB folder location [green](Without lossing data)[/green]"
 
     }
 
