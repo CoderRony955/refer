@@ -12,23 +12,23 @@ class AllCommands:
     # packages management commands
     MANAGEMENT_COMMANDS = {
         "addpkg -name \'name\' -path \'path\'": {
-            "for": "Add new package / project folder to your collection",
+            "for": "Add new package / project folder path to your collection",
             "example": "addpkg -name \'clitool\' -path \'C:\\Users\\<name>\\Myprojects\\tool\'"
         },
         "updatepkg -name \'name\' -path \'path\'": {
-            "for": "Update existing package / project folder by reupload it",
+            "for": "Update existing package / project folder path by reupload it",
             "example": "updatepkg -name \'clitool_modifiyed\' -path \'C:\\Users\\<name>\\Myprojects\\modifyed\'"
         },
         "listpkgs": {
-            "for": "See list of all existing packages / project folder by reupload it",
+            "for": "See list of all existing packages / project folder path by reupload it",
             "example": "listpkgs"
         },
         "delpkg -name \'name\'": {
-            "for": "Delete & Remove existing package / project folder from your collection",
+            "for": "Delete & Remove existing package / project folder path from your collection",
             "example": "delpkg -name \'clitool\'"
         },
         "renamepkg -name \'name\'": {
-            "for": "Rename any existing package / project folder of your collection",
+            "for": "Rename any existing package / project folder path of your collection",
             "example": "renamepkg -name \'new_name\'"
         },
     }
@@ -46,10 +46,6 @@ class AllCommands:
         "referwith -template -message \'your message\' -pkgs \'name of packages\'": {
             "for": "Share multiple packages in available webpage template. After running command refer display all available templates options, you can choose any one of them ",
             "example": "referwith -template -message \'This is the cli tools for xyz.\' -pkgs \'cli_app1 cli_app2 cli_app3\'"
-        },
-        "referwith -template -pkgs \'name of packages\'": {
-            "for": "Share multiple packages in available webpage template. After running command refer display all available templates options, you can choose any one of them ",
-            "example": "referwith -template \'This is the cli tools for xyz.\' -pkgs \'cli_app1 cli_app2 cli_app3\'"
         },
     }
     REFERRAL_FROM_LOCAL = {

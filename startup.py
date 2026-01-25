@@ -9,6 +9,7 @@ import random
 import asyncio
 import maskpass
 import yaml
+import json
 import os
 
 console = Console()
@@ -72,7 +73,7 @@ class OnStartup:
 
                 if os.path.exists(f"{location}\\referdb"):
                     console.print(
-                        f"{location}\\referdb [yellow][!] referdb folder already exist!\n")
+                        f"[bold]{location}\\referdb[/bold] [yellow][!] referdb folder already exist!\n")
                     break
 
                 # create db folder
@@ -96,6 +97,10 @@ class OnStartup:
             }
         with open('referconfig.yaml', 'w') as file:
             yaml.safe_dump(credentials, file, sort_keys=False)
+
+        # create 'packages.json' in which to store packages path & names
+        with open(f"{location}\\referdb\\packages.json", "w") as jsonfile:
+            json.dump([], jsonfile, indent=4)
 
         console.print(
             f"[bold green]{random.choice(Keywords.confirmation_keywords)}[/bold green]\n")
