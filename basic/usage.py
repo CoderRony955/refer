@@ -46,15 +46,15 @@ changedb
 
 ---
 
-## 📦 Package Management Commands
+## 📦 Personal Package Management Commands
 
-Manage your project packages in the local database.
+Manage your project packages paths securely in the locally based refer database.
 
-### Add a Package
+### Add a Package Path with their specific name
 ```bash
 addpkg -name 'project-name' -path 'C:\\Users\\YourName\\Projects\\my-project'
 ```
-**Purpose:** Add a new project folder to your collection  
+**Purpose:** Add a new project folder path to your collection  
 **Example:**
 ```bash
 addpkg -name 'clitool' -path 'C:\\Users\\John\\Myprojects\\tool'
@@ -62,11 +62,11 @@ addpkg -name 'clitool' -path 'C:\\Users\\John\\Myprojects\\tool'
 
 ---
 
-### Update a Package
+### Update a existing Package path
 ```bash
 updatepkg -name 'project-name' -path 'C:\\Users\\YourName\\Projects\\updated-project'
 ```
-**Purpose:** Update an existing package by re-uploading a modified version  
+**Purpose:** Update an existing package path to new path with specific name  
 **Example:**
 ```bash
 updatepkg -name 'clitool_modified' -path 'C:\\Users\\John\\Myprojects\\modified'
@@ -78,7 +78,7 @@ updatepkg -name 'clitool_modified' -path 'C:\\Users\\John\\Myprojects\\modified'
 ```bash
 listpkgs
 ```
-**Purpose:** View all existing packages in your collection  
+**Purpose:** View all existing packages in your collection (including name and path)  
 **Example:**
 ```bash
 listpkgs
@@ -86,7 +86,7 @@ listpkgs
 
 ---
 
-### Delete a Package
+### Delete or Remove a Package
 ```bash
 delpkg -name 'project-name'
 ```
@@ -98,11 +98,11 @@ delpkg -name 'clitool'
 
 ---
 
-### Rename a Package
+### Rename Package name
 ```bash
 renamepkg -name 'current-name' -newname 'new-name'
 ```
-**Purpose:** Rename an existing package  
+**Purpose:** Rename an existing package  name
 **Example:**
 ```bash
 renamepkg -name 'clitool' -newname 'clitool_pro'
@@ -112,7 +112,7 @@ renamepkg -name 'clitool' -newname 'clitool_pro'
 
 ## 🔗 Sharing Commands - From Database
 
-Share projects that are stored in your REFER database.
+Share projects that are stored in your REFER database. It makes easy referral because of refer local db stores your personal projects paths with their specific names that makes easy for you to directly refer any project just by typing their name.
 
 ### Quick Share Single Package
 ```bash
@@ -166,21 +166,9 @@ refer referwith -template -message 'This is the cli tools for xyz.' -pkgs 'cli_a
 
 ---
 
-### Share with Template (No Message)
-```bash
-refer referwith -template -pkgs 'package1 package2 package3'
-```
-**Purpose:** Share packages with template without adding a message  
-**Example:**
-```bash
-refer referwith -template -pkgs 'cli_app1 cli_app2 cli_app3'
-```
-
----
-
 ## 🔗 Sharing Commands - From Local Path
 
-Share projects directly from your filesystem without storing in database.
+Share projects directly using path. If you don't prefer to use refer local db.
 
 ### Quick Share from Path
 ```bash
@@ -194,7 +182,7 @@ refer -path 'C:\\Users\\John\\Myprojects\\tool'
 
 ---
 
-### Share Multiple from Paths with Message
+### Share Multiple project folders using their Paths with Message
 ```bash
 refer referwith -message 'Your message' -paths 'path1 path2 path3'
 ```
@@ -206,7 +194,7 @@ refer referwith -message 'This is a GUI apps for xyz.' -paths 'C:\\Users\\John\\
 
 ---
 
-### Share Multiple from Paths with Template
+### Share Multiple project folders using their from Paths with Template
 ```bash
 refer referwith -template -message 'Your message' -paths 'path1 path2 path3'
 ```
@@ -220,12 +208,11 @@ refer referwith -template -message 'This is the cli tools for xyz.' -paths 'C:\\
 
 ## 💡 Command Comparison
 
-### Package Management vs Direct Sharing
+### Packages path Management vs Direct Sharing
 
 | Aspect | Database (addpkg) | Direct Share (from path) |
 |--------|-------------------|-------------------------|
-| **Storage** | Stored in REFER DB | No storage required |
-| **Reuse** | Can share multiple times | One-time share |
+| **Storage** | Stored in REFER DB just using name | No storage required |
 | **Organization** | Organized collection | Ad-hoc sharing |
 | **Management** | Can rename, update, delete | Spontaneous |
 | **Best For** | Regular projects | Quick one-off shares |
@@ -236,12 +223,12 @@ refer referwith -template -message 'This is the cli tools for xyz.' -paths 'C:\\
 
 ### Scenario 1: Regular Project Owner
 ```bash
-# Add your projects to database
+# Add your personal projects path to database
 addpkg -name 'webapp' -path 'C:\\Projects\\webapp'
 addpkg -name 'api' -path 'C:\\Projects\\api'
 
 # View your collection
-refer listpkgs
+listpkgs
 
 # Share with friends
 refer -pkg 'webapp'

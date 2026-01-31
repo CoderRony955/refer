@@ -16,18 +16,18 @@ directly from your system—making project sharing as easy as a single command.
 
 ## ✨ Key Features
 
-### 📦 **Smart Package Management**
-- Add, update, list, rename, and delete your project packages effortlessly
-- Organize all your projects in one secure local database
+### 📦 **Smart Package paths Management**
+- Add, update, list, rename, and delete your personal project packages paths effortlessly
+- Organize all your personal projects in one secure local database
 - Change database location anytime without losing any data
 
 ### 🔗 **Instant Sharing**
-- Generate secure, one-click download links for your projects
+- Generate secure, one-click download links for your personal projects
 - Share packages directly from your system to friends
 - No cloud uploads, no complicated steps—just pure simplicity
 
 ### 🔐 **Secure & Private**
-- Keep your projects on your local system
+- Keep your personal projects on your local system
 - Control who gets access to what
 - No third-party servers storing your data
 
@@ -44,7 +44,7 @@ directly from your system—making project sharing as easy as a single command.
 # See all commands
 usage
 
-# Add your first project
+# Add your first project path with their specific
 addpkg -name 'my-project' -path 'C:\\Users\\YourName\\Projects\\my-project'
 
 # Share it with friends
