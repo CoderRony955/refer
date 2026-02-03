@@ -38,24 +38,6 @@ directly from your system—making project sharing as easy as a single command.
 
 ---
 
-## 🎮 Quick Start with basic commands
-
-```bash
-# See all commands
-usage
-
-# Add your first project path with their specific
-addpkg -name 'my-project' -path 'C:\\Users\\YourName\\Projects\\my-project'
-
-# Share it with friends
--pkg 'my-project'
-
-# List all your packages
-listpkgs
-```
-
----
-
 ## 💡 Perfect For
 
 - **Developers** sharing code samples and projects

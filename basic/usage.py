@@ -84,6 +84,16 @@ listpkgs
 listpkgs
 ```
 
+### See one Specific Package Path
+```bash
+listpkg -name 'name'
+```
+**Purpose:** See one specific package path 
+**Example:**
+```bash
+listpkg -name 'myclitool'
+```
+
 ---
 
 ### Delete or Remove a Package
@@ -100,12 +110,12 @@ delpkg -name 'clitool'
 
 ### Rename Package name
 ```bash
-renamepkg -name 'current-name' -newname 'new-name'
+renamepkg -from 'current-name' -to 'new-name'
 ```
 **Purpose:** Rename an existing package  name
 **Example:**
 ```bash
-renamepkg -name 'clitool' -newname 'clitool_pro'
+renamepkg -from 'clitool' -to 'clitool_pro'
 ```
 
 ---
