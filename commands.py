@@ -17,19 +17,23 @@ class AllCommands:
         },
         "updatepkg -name \'name\' -path \'path\'": {
             "for": "Update existing package / project folder path by reupload it",
-            "example": "updatepkg -name \'clitool_modifiyed\' -path \'C:\\Users\\<name>\\Myprojects\\modifyed\'"
+            "example": "updatepkg -name \'clitool_modified\' -path \'C:\\Users\\<name>\\Myprojects\\modifyed\'"
         },
         "listpkgs": {
-            "for": "See list of all existing packages / project folder path by reupload it",
+            "for": "See list of all existing packages",
             "example": "listpkgs"
+        },
+        "listpkg -name \'name\'": {
+            "for": "See one specific package path",
+            "example": "listpkg -name \'myclitool\'"
         },
         "delpkg -name \'name\'": {
             "for": "Delete & Remove existing package / project folder path from your collection",
             "example": "delpkg -name \'clitool\'"
         },
-        "renamepkg -name \'name\'": {
+        "renamepkg -from \'old_name\' -to \'new_name\'": {
             "for": "Rename any existing package / project folder path of your collection",
-            "example": "renamepkg -name \'new_name\'"
+            "example": "renamepkg -from \'clitool\' -to \'myclitool\'"
         },
     }
 
