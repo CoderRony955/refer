@@ -10,10 +10,10 @@ class Validate:
             target_path = ""
             if path.startswith("\'"):
                 target_path = path.replace("\'", "")
-                
+
             elif path.startswith("\"", ""):
                 target_path = path.replace("\"", "")
-                
+
             if not os.path.exists(path=target_path):
                 return False
             return True

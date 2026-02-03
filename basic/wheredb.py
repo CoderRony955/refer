@@ -14,4 +14,4 @@ def display_referdb_location():
             f"[bold]Location:[/bold] [green]{location}[/green]")
         return
     console.print(
-        "It looks like you haven't choose refer db to store and do referral of your projects with your friends.")
+        "It looks like you haven't choose refer db to store your project paths..")
