@@ -16,6 +16,10 @@ from management import (
     renamepkg,
     listpkg
 )
+
+from referral.fromreferdb import (
+    refer
+)
 console = Console()
 
 
@@ -95,7 +99,6 @@ class Handler:
     def refer_with_db_command(self, command: str):
         """Handle refer through db command
         """
-        print(command.split())
         user_command = command.lower().split()
         if len(user_command) != 3:
             console.print(
@@ -110,6 +113,7 @@ class Handler:
                     "[red]Wrong use of[/red] refer [red]command![/red]\n[bold]Use like this:[/bold] refer -pkg \'clitool\'\n")
                 return False
         
+        refer.refer_pkg(name=user_command[2])
 
     async def main_handler(self):
         """Main handler
