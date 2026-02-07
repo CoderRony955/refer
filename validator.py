@@ -1,17 +1,13 @@
 from rich.console import Console
+from rich.prompt import Prompt
 import platform
 import subprocess
 import os
 
 from service_install_commands import (
     WIN_CLOUDFLARED_INSTALL,
-    WIN_NGROK_INSTALL,
-
     LINUX_CLOUDFLARED_INSTALL,
-    LINUX_NGROK_INSTALL,
-
     MACOS_CLOUDFLARED_INSTALL,
-    MACOS_NGROK_INSTALL
 )
 
 console = Console()
@@ -105,51 +101,37 @@ class Validate:
                     return
 
             elif option == "2":
-                check = subprocess.run(
-                    ["ngrok", "--version"], shell=True, capture_output=True)
+                # first of all check if ngrok auth token is null in config then ask user to enter it
+                import yaml
 
-                # if ngrok not found in machine
-                if check.stderr:
-                    # for windows
-                    if platform.system() == "Windows":
-                        console.print(
-                            "[yellow]ngrok is not found in your machine! Try to install automatically.[/yellow]")
+                # read config file
+                with open("./referconfig.yaml", "r") as file:
+                    config = yaml.safe_load(file.read())
 
-                        # install via winget
-                        os.system(WIN_NGROK_INSTALL)
-                        console.print(
-                            "[green]ngrok installed![/green] [cyan]Now exit from refer and add your ngrok auth token using command[/cyan] [bold]ngrok config add-authtoken <your-auth-token>[/bold] [cyan]then restart refer in order to use same command.[/cyan]")
-                        return
+                ngrok_auth = config["ngrok_auth"]
 
-                    # for linux
-                    elif platform.system() == "Linux":
-                        console.print(
-                            "[yellow]ngrok is not found in your machine! Try to install automatically.[/yellow]")
+                # if auth token is null
+                if not ngrok_auth:
+                    while True:
+                        auth = Prompt.ask(
+                            "\n[bold]Get your ngrok auth token from:[/bold] [cyan]https://dashboard.ngrok.com/[/cyan] \nEnter your ngrok auth token: ")
+                        print()
 
-                        # install via curl & apt
-                        os.system(LINUX_NGROK_INSTALL)
-                        console.print(
-                            "[green]ngrok installed![/green] [cyan]Now exit from refer and add your ngrok auth token using command[/cyan] [bold]ngrok config add-authtoken <your-auth-token>[/bold] [cyan]then restart refer in order to use same command.[/cyan]")
-                        return
+                        if auth.lower() == "quit":
+                            return False
 
-                    # for macos
-                    elif platform.system() == "Darwin":
-                        console.print(
-                            "[yellow]ngrok is not found in your machine! Try to install automatically.[/yellow]")
+                        if not auth:
+                            console.print(
+                                "[yellow][!] please enter your ngrok auth token to continue or type 'quit' to exit from operation[/yellow]")
+                            continue
 
-                        # install via brew
-                        os.system(MACOS_NGROK_INSTALL)
-                        console.print(
-                            "[green]ngrok installed![/green] [cyan]Now exit from refer and add your ngrok auth token using command[/cyan] [bold]ngrok config add-authtoken <your-auth-token>[/bold] [cyan]then restart refer in order to use same command.[/cyan]")
-                        return
+                        # write auth token to config file
+                        config["ngrok_auth"] = auth
+                        with open("./referconfig.yaml", "w") as f:
+                            yaml.safe_dump(config, f, sort_keys=False)
+                        return True
 
-                    else:
-                        console.print("[!] Unkown OS[/yellow]")
-                        return
-                else:
-                    # if ngrok is already installed in machine
-                    console.print(
-                        f"[green]{subprocess.run(["ngrok", "--version"], capture_output=True, shell=True).stdout}[/green]")
-                    return
+                # if auth token is already stored in config file
+                return True
         except Exception as e:
             return e
