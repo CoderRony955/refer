@@ -159,7 +159,8 @@ class Start_server:
                         daemon=True
                     ).start()
 
-                    Validate.tunneling_services(option="2")
-                    return Tunnel.ngrok(pkg_name=package_name)
+                    if Validate.tunneling_services(option="2"):
+                        return Tunnel.ngrok(pkg_name=package_name)
+                    return
         except Exception as e:
             console.print(e)
