@@ -88,12 +88,14 @@ class OnStartup:
         if location:
             credentials = {
                 "password": password,
-                "referdb_location": f"{location}\\referdb"
+                "referdb_location": f"{location}\\referdb",
+                "ngrok_auth": None
             }
         else:
             credentials = {
                 "password": password,
-                "referdb_location": None
+                "referdb_location": None,
+                "ngrok_auth": None
             }
         with open('referconfig.yaml', 'w') as file:
             yaml.safe_dump(credentials, file, sort_keys=False)

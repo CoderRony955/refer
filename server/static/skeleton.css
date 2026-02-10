@@ -1,0 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.download-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #0066cc;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
