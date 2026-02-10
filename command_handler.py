@@ -1,5 +1,6 @@
 from rich.console import Console
 from rich.prompt import Prompt
+from filterer import Filter
 from startup import OnStartup
 from basic import (
     about,
@@ -18,6 +19,11 @@ from management import (
 )
 
 from referral.fromreferdb import (
+    refer,
+    referwith_message
+)
+
+from referral.fromsystem import (
     refer
 )
 console = Console()
@@ -112,8 +118,75 @@ class Handler:
                 console.print(
                     "[red]Wrong use of[/red] refer [red]command![/red]\n[bold]Use like this:[/bold] refer -pkg \'clitool\'\n")
                 return False
-        
+
         refer.refer_pkg(name=user_command[2])
+
+    def refer_with_local_path_command(self, command: str):
+        """Handle refer through system's local path command
+        """
+        user_command = command.lower().split()
+        if len(user_command) != 3:
+            console.print(
+                "[red]Wrong use of[/red] refer [red]command![/red]\n[bold]Use like this:[/bold] refer -path \'<path>\'\n")
+            return False
+
+        exact_command = ["refer", "-path"]
+
+        for parameter in range(2):
+            if user_command[parameter] not in exact_command:
+                console.print(
+                    "[red]Wrong use of[/red] refer [red]command![/red]\n[bold]Use like this:[/bold] refer -path \'<path>\'\n")
+                return False
+
+        refer.refer_path(path=user_command[2])
+
+    def referwith_message_through_pkg_names(self, command: str):
+        """Handle referwith message command to share multiple packages through their names
+        """
+        import shlex
+        try:
+            user_command = shlex.split(command.lower())
+        except ValueError:
+            console.print("[red]Invalid command format[/red]")
+            return False
+
+        # Expected pattern:
+        # referwith -message <msg> -pkgs <pkg1> <pkg2> ...
+
+        if len(user_command) < 5:
+            console.print(
+                "[red]Wrong use of[/red] referwith [red]command! To refer multiple packages through their names[/red]\n"
+                "[bold]Use like this:[/bold] referwith -message \"<your_message>\" -pkgs \"health_monitor chatbot clitool guiapp\"\n"
+            )
+            return False
+
+        if (
+            user_command[0] != "referwith"
+            or user_command[1] != "-message"
+            or "-pkgs" not in user_command
+        ):
+            console.print("[red]Invalid referwith command[/red]")
+            return False
+
+        pkgs_index = user_command.index("-pkgs")
+
+        # message is right after -message
+        message = user_command[2]
+
+        # everything after -pkgs is a package name
+        pkgs = user_command[pkgs_index + 1:]
+
+        if not pkgs:
+            console.print("[red]No package names provided[/red]")
+            return False
+
+        pkgs_names = [Filter.word(pkg) for pkg in pkgs]
+        referwith_message.referwith_message(
+            pkgs=pkgs_names,
+            message=Filter.word(message)
+        )
+
+        return True
 
     async def main_handler(self):
         """Main handler
@@ -195,9 +268,26 @@ class Handler:
                     #          REFERRAL COMMMANDS (THROUGH REFERDB)
                     # --------------------------------------------------------
 
-                    # to refer by just using downloadable link
+                    # to refer by name and create downloadable link
                 elif user.lower().startswith("refer -pkg"):
                     handle = self.refer_with_db_command(user.lower())
+                    if not handle:
+                        continue
+
+                    # to refer multiple packages with message
+                elif user.lower().startswith("referwith -message") and "-pkgs" in user.lower():
+                    handle = self.referwith_message_through_pkg_names(
+                        user.lower())
+                    if not handle:
+                        continue
+
+                    # --------------------------------------------------------
+                    #        REFERRAL COMMMANDS (THROUGH SYSTEM's PATH)
+                    # --------------------------------------------------------
+
+                    # to refer by path and create downloadable link
+                elif user.lower().startswith("refer -path"):
+                    handle = self.refer_with_local_path_command(user.lower())
                     if not handle:
                         continue
 
