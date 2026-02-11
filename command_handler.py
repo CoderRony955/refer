@@ -24,7 +24,8 @@ from referral.fromreferdb import (
 )
 
 from referral.fromsystem import (
-    refer
+    refer,
+    referwith_message
 )
 console = Console()
 
@@ -187,6 +188,58 @@ class Handler:
         )
 
         return True
+    
+    def referwith_message_through_paths(self, command: str):
+        """Handle referwith message command to share multiple packages through their system paths
+        """
+        import shlex
+
+        try:
+            user_command = shlex.split(command)
+        except ValueError:
+            console.print("[red]Invalid command format[/red]")
+            return False
+
+        if len(user_command) < 5:
+            console.print(
+                "[red]Wrong use of[/red] referwith [red]command![/red]\n"
+                "[bold]Use like this:[/bold]\n"
+                'referwith -message "your message" -paths "path 1" "path 2" "path 3"\n'
+            )
+            return False
+
+        if (
+            user_command[0] != "referwith"
+            or user_command[1] != "-message"
+            or "-paths" not in user_command
+        ):
+            console.print("[red]Invalid referwith command[/red]")
+            return False
+
+        paths_index = user_command.index("-paths")
+
+        message = user_command[2]
+
+        # collect paths after -paths until another flag appears
+        paths = []
+        for token in user_command[paths_index + 1:]:
+            if token.startswith("-"):
+                break
+            paths.append(token)
+
+        if not paths:
+            console.print("[red]No package paths provided[/red]")
+            return False
+
+        pkgs_paths = [Filter.word(p) for p in paths]
+
+        referwith_message.referwith_message_th_path(
+            paths=pkgs_paths,
+            message=Filter.word(message)
+        )
+
+        return True
+
 
     async def main_handler(self):
         """Main handler
@@ -288,6 +341,13 @@ class Handler:
                     # to refer by path and create downloadable link
                 elif user.lower().startswith("refer -path"):
                     handle = self.refer_with_local_path_command(user.lower())
+                    if not handle:
+                        continue
+                
+                # to refer multiple packages with message through paths
+                elif user.lower().startswith("referwith -message") and "-paths" in user.lower():
+                    handle = self.referwith_message_through_paths(
+                        user.lower())
                     if not handle:
                         continue
 
