@@ -1,7 +1,7 @@
 from rich.console import Console
 from validator import Validate
 from filterer import Filter
-# from server.flask_server import Start_server
+from server.flask_server import Start_server
 import shutil
 import json
 import yaml
@@ -74,7 +74,6 @@ def referwith_message(pkgs: list[str], message: str):
         shutil.rmtree("./temphold/shareable_packages")
 
         # start process to start server
-        from server.flask_server import Start_server
         Server = Start_server(
             shareable_folder=".\\temphold\\shareable_packages.zip", message=message)
         return Server.run()  # run
