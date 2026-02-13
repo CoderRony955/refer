@@ -10,7 +10,42 @@ import os
 console = Console()
 
 
-def referwith_message(pkgs: list[str], message: str):
+def choose_template():
+    """Ask user to choose template from available options
+    """
+    try:
+        # read templates.json
+        with open("./referral/templates.json", "r") as file:
+            templates = json.load(file)
+
+        while True:
+            console.print(
+                "\n[bold]please choose the template from available options[/bold]: \n")
+            for template in templates:
+                console.print(f"[bold]{template["id"]}. {template["name"]}")
+            console.print(
+                "just enter the name of template e.g. [bold]developer[/bold]")
+
+            user = input(":_ ")
+            # if user does not provide anything
+            if not user:
+                console.print(
+                    "\n[yellow][!] Please choose the template from given options![/yellow]")
+                continue
+
+            for option in templates:
+                if user.lower() == option["name"]:
+                    return user
+
+            # if user select unkown template
+            console.print(
+                f"[red]\"{user}\"[/red] [yellow][!] Unkown template![/yellow]")
+            continue
+    except KeyboardInterrupt:
+        pass
+
+
+def referwith_template(pkgs: list[str], message: str):
     try:
         # if config is not found
         if not Validate.path(path="./referconfig.yaml"):
@@ -53,9 +88,11 @@ def referwith_message(pkgs: list[str], message: str):
                 f"[yellow] [!] Unable to find packages with such names.[/yellow]")
             return
 
+        template = choose_template()
+
         # create temp zip folder of target package in ./temphold dir
         console.print(
-            f"[cyan]Copying all shareable packages and creating single temp .zip folder to share of temp just wait for couple of seconds![/cyan]")
+            f"\n[cyan]Copying all shareable packages and creating single temp .zip folder to share of temp just wait for couple of seconds![/cyan]")
 
         destination = "./temphold/shareable_packages"
 
@@ -75,7 +112,7 @@ def referwith_message(pkgs: list[str], message: str):
 
         # start process to start server
         Server = Start_server(
-            shareable_folder=".\\temphold\\shareable_packages.zip", message=message)
+            shareable_folder=".\\temphold\\shareable_packages.zip", message=message, template=f"{template}.html")
         return Server.run()  # run
     except Exception as e:
         console.print(f"[yellow] [!] {e} [/yellow]")
