@@ -20,7 +20,8 @@ from management import (
 
 from referral.fromreferdb import (
     refer,
-    referwith_message
+    referwith_message,
+    referwith_template
 )
 
 from referral.fromsystem import (
@@ -188,7 +189,56 @@ class Handler:
         )
 
         return True
-    
+
+    def referwith_message_with_template_through_names(self, command: str):
+        """Handle referwith template command to share multiple packages in cool template with message
+        """
+        import shlex
+        try:
+            user_command = shlex.split(command.lower())
+        except ValueError:
+            console.print("[red]Invalid command format[/red]")
+            return False
+
+        # Expected pattern:
+        # referwith -template -message <msg> -pkgs <pkg1> <pkg2> ...
+
+        if len(user_command) < 5:
+            console.print(
+                "[red]Wrong use of[/red] referwith [red]command! To refer multiple packages through their names[/red]\n"
+                "[bold]Use like this:[/bold] referwith -template -message \"<your_message>\" -pkgs \"health_monitor chatbot clitool guiapp\"\n"
+            )
+            return False
+
+        if (
+            user_command[0] != "referwith"
+            or user_command[1] != "-template"
+            or user_command[2] != "-message"
+            or "-pkgs" not in user_command
+        ):
+            console.print("[red]Invalid referwith -template command[/red]")
+            return False
+
+        pkgs_index = user_command.index("-pkgs")
+
+        # message is right after -message
+        message = user_command[3]
+
+        # everything after -pkgs is a package name
+        pkgs = user_command[pkgs_index + 1:]
+
+        if not pkgs:
+            console.print("[red]No package names provided[/red]")
+            return False
+
+        pkgs_names = [Filter.word(pkg) for pkg in pkgs]
+        referwith_template.referwith_template(
+            pkgs=pkgs_names,
+            message=Filter.word(message)
+        )
+
+        return True
+
     def referwith_message_through_paths(self, command: str):
         """Handle referwith message command to share multiple packages through their system paths
         """
@@ -239,7 +289,6 @@ class Handler:
         )
 
         return True
-
 
     async def main_handler(self):
         """Main handler
@@ -334,6 +383,13 @@ class Handler:
                     if not handle:
                         continue
 
+                    # to refer multiple packages with message and with cool available template options
+                elif user.lower().startswith("referwith -template") and "-pkgs" in user.lower():
+                    handle = self.referwith_message_with_template_through_names(
+                        user.lower())
+                    if not handle:
+                        continue
+
                     # --------------------------------------------------------
                     #        REFERRAL COMMMANDS (THROUGH SYSTEM's PATH)
                     # --------------------------------------------------------
@@ -343,7 +399,7 @@ class Handler:
                     handle = self.refer_with_local_path_command(user.lower())
                     if not handle:
                         continue
-                
+
                 # to refer multiple packages with message through paths
                 elif user.lower().startswith("referwith -message") and "-paths" in user.lower():
                     handle = self.referwith_message_through_paths(
