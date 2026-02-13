@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Inter, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, #e6f2ff, transparent 45%),
+    radial-gradient(circle at 80% 30%, #ffe8f3, transparent 45%),
+    linear-gradient(180deg,#cfe7ff,#f7fbff);
+}
+
+/* main app */
+
+.cloud-app{
+  width:920px;
+  background:white;
+  border-radius:20px;
+  padding:26px 28px 26px;
+  box-shadow:0 30px 60px rgba(0,0,0,.15);
+}
+
+/* header */
+
+.cloud-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.cloud-logo{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  background:linear-gradient(135deg,#7cc7ff,#7cf3ff);
+  color:#00345a;
+  box-shadow:0 10px 20px rgba(100,180,255,.35);
+}
+
+.cloud-title h1{
+  margin:0;
+  font-size:22px;
+  color:#244c7a;
+}
+
+.cloud-title span{
+  font-size:12px;
+  color:#6f92b8;
+}
+
+/* diagram */
+
+.cloud-diagram{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.cloud-node{
+  padding:12px 18px;
+  border-radius:999px;
+  background:#eef6ff;
+  color:#2c5f9a;
+  font-weight:600;
+  font-size:13px;
+  box-shadow:0 6px 14px rgba(0,0,0,.08);
+}
+
+.cloud-node.main{
+  background:linear-gradient(135deg,#7cc7ff,#7cf3ff);
+  color:#00345a;
+}
+
+.cloud-link{
+  width:40px;
+  height:4px;
+  border-radius:999px;
+  background:#b6dcff;
+}
+
+/* console */
+
+.cloud-console{
+  border-radius:16px;
+  overflow:hidden;
+  background:#1e2a44;
+  color:#e9f2ff;
+  margin-bottom:18px;
+}
+
+.console-head{
+  padding:10px 14px;
+  font-size:12px;
+  background:#2a3a66;
+  color:#cfe1ff;
+}
+
+.console-body{
+  margin:0;
+  padding:14px 16px 16px;
+  font-family:monospace;
+  font-size:13.5px;
+  line-height:1.6;
+  white-space:pre-wrap;
+}
+
+/* footer */
+
+.cloud-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cloud-status{
+  font-size:12px;
+  color:#6f92b8;
+}
+
+.cloud-btn{
+  text-decoration:none;
+  padding:10px 18px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:600;
+  color:#00345a;
+  background:linear-gradient(135deg,#7cc7ff,#7cf3ff);
+  box-shadow:0 10px 22px rgba(100,180,255,.35);
+  transition:.2s ease;
+}
+
+.cloud-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(100,180,255,.45);
+}

@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Inter:wght@400;600;700&display=swap');
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #ffe600,
+      #ffe600 18px,
+      #ff69b4 18px,
+      #ff69b4 36px,
+      #00f2ff 36px,
+      #00f2ff 54px
+    );
+  font-family:Inter, sans-serif;
+}
+
+/* main */
+
+.meme-app{
+  width:900px;
+  background:white;
+  border:6px solid black;
+  border-radius:12px;
+  padding:22px 24px 24px;
+  box-shadow:12px 12px 0 black;
+}
+
+/* header */
+
+.meme-header{
+  text-align:center;
+  margin-bottom:16px;
+}
+
+.meme-logo{
+  font-size:40px;
+  margin-bottom:6px;
+}
+
+.meme-header h1{
+  margin:0;
+  font-family:"Comic Neue", cursive;
+  font-size:36px;
+  letter-spacing:1px;
+}
+
+.subtitle{
+  display:block;
+  margin-top:4px;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* banner stickers */
+
+.meme-banner{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.sticker{
+  padding:6px 12px;
+  border:3px solid black;
+  border-radius:999px;
+  font-family:"Comic Neue", cursive;
+  font-size:14px;
+  background:#fff700;
+  transform:rotate(-4deg);
+}
+
+.sticker:nth-child(2){
+  background:#00f2ff;
+  transform:rotate(3deg);
+}
+
+.sticker:nth-child(3){
+  background:#ff9cff;
+  transform:rotate(-2deg);
+}
+
+.sticker:nth-child(4){
+  background:#9dff8b;
+  transform:rotate(5deg);
+}
+
+/* output */
+
+.meme-output{
+  border:4px dashed black;
+  padding:14px 16px 16px;
+  margin-bottom:16px;
+  background:#ffffff;
+}
+
+.output-title{
+  font-family:"Comic Neue", cursive;
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+.meme-message{
+  margin:0;
+  font-family:monospace;
+  font-size:14px;
+  white-space:pre-wrap;
+}
+
+/* footer */
+
+.meme-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.meme-status{
+  font-size:12px;
+  font-weight:700;
+}
+
+.meme-btn{
+  text-decoration:none;
+  padding:10px 16px;
+  border:4px solid black;
+  border-radius:8px;
+  font-weight:700;
+  background:#ff69b4;
+  color:black;
+  box-shadow:4px 4px 0 black;
+  transition:.15s ease;
+}
+
+.meme-btn:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 black;
+}

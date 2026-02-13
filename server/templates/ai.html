@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Inference Console</title>
+  <link rel="stylesheet" href="../static/ai.css">
+</head>
+<body>
+
+<div class="ai-shell">
+
+  <header class="ai-header">
+    <div class="ai-badge">AI</div>
+    <div class="ai-title">
+      <h1>Neural Inference Engine</h1>
+      <span>foundation model · real-time reasoning</span>
+    </div>
+  </header>
+
+  <section class="ai-visual">
+
+    <div class="node-row">
+      <div class="node"></div>
+      <div class="node"></div>
+      <div class="node"></div>
+      <div class="node"></div>
+    </div>
+
+    <div class="node-row mid">
+      <div class="node"></div>
+      <div class="node"></div>
+      <div class="node"></div>
+    </div>
+
+    <div class="node-row">
+      <div class="node"></div>
+      <div class="node"></div>
+      <div class="node"></div>
+      <div class="node"></div>
+    </div>
+
+  </section>
+
+  <section class="ai-output">
+
+    <div class="ai-label">Model Output</div>
+
+    <pre class="ai-result">
+{{ message }}
+    </pre>
+
+  </section>
+
+  <footer class="ai-footer">
+    <div class="ai-meta">
+      model: inference-v3 · latency: 23ms · confidence: high
+    </div>
+
+    <a class="ai-btn" href="{{ shareable_folder }}" target="_blank">
+      Download AI Artifacts
+    </a>
+  </footer>
+
+</div>
+
+</body>
+</html>
