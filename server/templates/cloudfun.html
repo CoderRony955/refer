@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CloudFun Console</title>
+  <link rel="stylesheet" href="../static/cloudfun.css">
+</head>
+<body>
+
+<div class="cloud-app">
+
+  <header class="cloud-header">
+    <div class="cloud-logo">☁️</div>
+    <div class="cloud-title">
+      <h1>CloudFun Platform</h1>
+      <span>deploy · scale · smile</span>
+    </div>
+  </header>
+
+  <section class="cloud-diagram">
+
+    <div class="cloud-node">Frontend</div>
+    <div class="cloud-link"></div>
+    <div class="cloud-node main">Cloud</div>
+    <div class="cloud-link"></div>
+    <div class="cloud-node">Backend</div>
+
+  </section>
+
+  <section class="cloud-console">
+    <div class="console-head">cloud.log</div>
+
+    <pre class="console-body">
+{{ message }}
+    </pre>
+  </section>
+
+  <footer class="cloud-footer">
+    <div class="cloud-status">
+      region: global · uptime: 99.99%
+    </div>
+
+    <a href="{{ shareable_folder }}" target="_blank" class="cloud-btn">
+      Download Cloud Assets
+    </a>
+  </footer>
+
+</div>
+
+</body>
+</html>

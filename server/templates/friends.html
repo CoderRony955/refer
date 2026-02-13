@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Friends Zone</title>
+  <link rel="stylesheet" href="../static/friends.css" />
+</head>
+<body>
+
+  <div class="friends-card">
+
+    <header class="friends-header">
+      <span class="emoji">🤝</span>
+      <h1>Hey, Friend!</h1>
+      <p>Just something for you</p>
+    </header>
+
+    <section class="friends-content">
+
+      <div class="note">
+        {{ message }}
+      </div>
+
+    </section>
+
+    <footer class="friends-footer">
+      <a class="friends-btn" href="{{ shareable_folder }}" target="_blank">
+        Grab the Stuff 🚀
+      </a>
+    </footer>
+
+  </div>
+
+</body>
+</html>

@@ -38,7 +38,7 @@ def referwith_message_th_path(paths: list[str], message: str):
             "./temphold/shareable_packages", "zip", destination
         )
 
-        # remove sharelable_packages tree after converting it to arhive
+        # remove shareable_packages tree after converting it to archive
         shutil.rmtree("./temphold/shareable_packages")
 
         # start process to start server

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Algorithm Engine</title>
+  <link rel="stylesheet" href="../static/algorithm.css">
+</head>
+<body>
+
+<div class="algo-container">
+
+  <header class="algo-header">
+    <div class="logo">∑</div>
+    <div class="title">
+      <h1>Algorithm Execution Engine</h1>
+      <span>deterministic · optimized · reproducible</span>
+    </div>
+  </header>
+
+  <section class="pipeline">
+
+    <div class="node">
+      <span class="tag">INPUT</span>
+      <p>Data received</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="node">
+      <span class="tag">PROCESS</span>
+      <p>Algorithm running</p>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="node">
+      <span class="tag">OUTPUT</span>
+      <p>Result generated</p>
+    </div>
+
+  </section>
+
+  <section class="result-panel">
+
+    <div class="panel-title">Execution Result</div>
+
+    <pre class="result">
+{{ message }}
+    </pre>
+
+  </section>
+
+  <footer class="algo-footer">
+    <div class="meta">
+      complexity: O(log n) · mode: optimized
+    </div>
+
+    <a class="download" href="{{ shareable_folder }}" target="_blank">
+      Download Result Artifacts
+    </a>
+  </footer>
+
+</div>
+
+</body>
+</html>

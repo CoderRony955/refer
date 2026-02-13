@@ -1,0 +1,125 @@
+:root{
+    --bg:#0d1117;
+    --panel:#161b22;
+    --text:#c9d1d9;
+    --muted:#8b949e;
+    --accent:#58a6ff;
+    --success:#3fb950;
+    --border:#30363d;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.wrapper{
+    width:900px;
+    max-width:92%;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:32px 36px 28px 36px;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    box-shadow:
+        0 0 0 1px rgba(88,166,255,.05),
+        0 20px 60px rgba(0,0,0,.6);
+}
+
+/* editor top bar */
+
+.editor-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+}
+
+.red{background:#ff5f56;}
+.yellow{background:#ffbd2e;}
+.green{background:#27c93f;}
+
+.title{
+    margin-left:10px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* code area */
+
+.code-block{
+    background:#0d1117;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:22px 24px;
+    line-height:1.7;
+}
+
+.key{
+    color:var(--accent);
+}
+
+.string{
+    color:#a5d6ff;
+}
+
+.comment{
+    display:block;
+    margin-top:10px;
+    color:var(--muted);
+}
+
+/* footer */
+
+.footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.status{
+    color:var(--success);
+    font-size:13px;
+}
+
+/* download button */
+
+.download-btn{
+    background:linear-gradient(135deg,#1f6feb,#58a6ff);
+    color:#fff;
+    border:none;
+    padding:12px 22px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    letter-spacing:.3px;
+    box-shadow:0 6px 18px rgba(88,166,255,.25);
+    transition:all .2s ease;
+}
+
+.download-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 10px 28px rgba(88,166,255,.35);
+}
+
+.download-btn:active{
+    transform:translateY(0);
+}

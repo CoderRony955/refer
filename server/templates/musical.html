@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Musical Studio</title>
+  <link rel="stylesheet" href="../static/musical.css">
+</head>
+<body>
+
+<div class="music-shell">
+
+  <header class="music-header">
+    <div class="music-icon">🎧</div>
+    <div class="music-title">
+      <h1>Digital Music Studio</h1>
+      <span>rhythm · melody · creativity</span>
+    </div>
+  </header>
+
+  <section class="stage">
+
+    <div class="note">♪</div>
+    <div class="note">♩</div>
+    <div class="note">♫</div>
+    <div class="note">♬</div>
+
+  </section>
+
+  <section class="equalizer">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </section>
+
+  <section class="music-output">
+
+    <div class="output-title">Now Playing</div>
+
+    <pre class="music-message">
+{{ message }}
+    </pre>
+
+  </section>
+
+  <footer class="music-footer">
+
+    <div class="track-status">
+      track loaded · live session
+    </div>
+
+    <a class="music-btn" href="{{ shareable_folder }}" target="_blank">
+      Download Tracks
+    </a>
+
+  </footer>
+
+</div>
+
+</body>
+</html>

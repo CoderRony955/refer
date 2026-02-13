@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Message</title>
+  <link rel="stylesheet" href="../static/love.css" />
+</head>
+<body>
+
+  <div class="card">
+
+    <header class="header">
+      <span class="heart">❤</span>
+      <h1>For You</h1>
+    </header>
+
+    <section class="content">
+
+      <p class="label">A little message just for you</p>
+
+      <div class="message">
+        {{ message }}
+      </div>
+
+      <p class="hint">
+        A small surprise is waiting for you below.
+      </p>
+
+    </section>
+
+    <footer class="footer">
+      <a class="love-btn" href="{{ shareable_folder }}" target="_blank">
+        Open Your Surprise
+      </a>
+    </footer>
+
+  </div>
+
+</body>
+</html>

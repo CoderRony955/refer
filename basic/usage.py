@@ -11,22 +11,18 @@ usage_content = """
 
 ## 🎯 Getting Started
 
-REFER is a CLI tool for managing and sharing your projects securely. All commands follow this pattern:
+**refer** is a CLI tool for managing and sharing your projects securely. All commands follow this pattern:
 
-### For basic & Management commands
+### For basic, Management commands and Referral commands
 ```
 <command> [options]
-```
-### For Referral commands
-```
-refer <command> [options]
 ```
 
 ---
 
 ## 📋 Basic Commands
 
-These are utility commands to help you navigate REFER.
+These are utility commands to help you navigate refer.
 
 | Command | Purpose |
 |---------|---------|
@@ -112,7 +108,7 @@ delpkg -name 'clitool'
 ```bash
 renamepkg -from 'current-name' -to 'new-name'
 ```
-**Purpose:** Rename an existing package  name
+**Purpose:** Rename an existing package name
 **Example:**
 ```bash
 renamepkg -from 'clitool' -to 'clitool_pro'
@@ -143,7 +139,7 @@ refer -pkg 'guiapp'
 
 ### Share Multiple Packages with Message
 ```bash
-refer referwith -message 'Your message here' -pkgs 'package1 package2 package3'
+referwith -message 'Your message here' -pkgs 'package1 package2 package3'
 ```
 **Purpose:** Share multiple packages with a custom message in an HTML webpage  
 **Features:**
@@ -153,14 +149,14 @@ refer referwith -message 'Your message here' -pkgs 'package1 package2 package3'
 
 **Example:**
 ```bash
-refer referwith -message 'This is a GUI apps for xyz.' -pkgs 'gui_app1 gui_app2 gui_app3'
+referwith -message 'This is a GUI apps for xyz.' -pkgs 'gui_app1 gui_app2 gui_app3'
 ```
 
 ---
 
 ### Share Multiple Packages with Template
 ```bash
-refer referwith -template -message 'Your message here' -pkgs 'package1 package2 package3'
+referwith -template -message 'Your message here' -pkgs 'package1 package2 package3'
 ```
 **Purpose:** Share packages using professional HTML templates  
 **Features:**
@@ -171,7 +167,7 @@ refer referwith -template -message 'Your message here' -pkgs 'package1 package2 
 
 **Example:**
 ```bash
-refer referwith -template -message 'This is the cli tools for xyz.' -pkgs 'cli_app1 cli_app2 cli_app3'
+referwith -template -message 'This is the cli tools for xyz.' -pkgs 'cli_app1 cli_app2 cli_app3'
 ```
 
 ---
@@ -194,24 +190,24 @@ refer -path 'C:\\Users\\John\\Myprojects\\tool'
 
 ### Share Multiple project folders using their Paths with Message
 ```bash
-refer referwith -message 'Your message' -paths 'path1 path2 path3'
+referwith -message 'Your message' -paths "path1" "path2" "path3"
 ```
 **Purpose:** Share multiple projects from different locations with a message  
 **Example:**
 ```bash
-refer referwith -message 'This is a GUI apps for xyz.' -paths 'C:\\Users\\John\\GUIApps\\gui_app1 C:\\Users\\John\\GUIApps\\gui_app2'
+referwith -message 'This is a GUI apps for xyz.' -paths "C:\\Users\\John\\GUIApps\\gui_app1" "C:\\Users\\John\\GUIApps\\gui_app2"
 ```
 
 ---
 
 ### Share Multiple project folders using their from Paths with Template
 ```bash
-refer referwith -template -message 'Your message' -paths 'path1 path2 path3'
+referwith -template -message 'Your message' -paths "path1" "path2" "path3"
 ```
 **Purpose:** Share multiple projects with a professional template  
 **Example:**
 ```bash
-refer referwith -template -message 'This is the cli tools for xyz.' -paths 'C:\\Users\\John\\CLITools\\cli_tool1 C:\\Users\\John\\CLITools\\cli_tool2'
+referwith -template -message 'This is the cli tools for xyz.' -paths "C:\\Users\\John\\GUIApps\\gui_app1" "C:\\Users\\John\\GUIApps\\gui_app2"
 ```
 
 ---
@@ -242,7 +238,7 @@ listpkgs
 
 # Share with friends
 refer -pkg 'webapp'
-refer referwith -message 'Check out my API!' -pkgs 'api'
+referwith -message 'Check out my API!' -pkgs 'api'
 ```
 
 ---
@@ -250,7 +246,7 @@ refer referwith -message 'Check out my API!' -pkgs 'api'
 ### Scenario 2: Sharing Multiple Projects with Template
 ```bash
 # Create a professional sharing page
-refer referwith -template -message 'My collection of tools' -pkgs 'tool1 tool2 tool3'
+referwith -template -message 'My collection of tools' -pkgs 'tool1 tool2 tool3'
 
 # Share the generated link with your friends
 ```
@@ -263,7 +259,7 @@ refer referwith -template -message 'My collection of tools' -pkgs 'tool1 tool2 t
 refer -path 'C:\\Downloads\\RandomProject'
 
 # Share multiple folders with a template
-refer referwith -template -paths 'C:\\Folder1 C:\\Folder2'
+referwith -template -paths "C:\\Folder1" "C:\\Folder2"
 ```
 
 ---

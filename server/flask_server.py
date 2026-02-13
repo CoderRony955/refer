@@ -18,6 +18,18 @@ console = Console()
 
 def _flask_process_entry(shareable_folder: str, message: str, template: str, host: str, port: int):
     """Top-level function to run Flask in a separate process (picklable on Windows)."""
+    # Suppress Flask and werkzeug logs
+    werkzeug_logger = logging.getLogger("werkzeug")
+    werkzeug_logger.setLevel(logging.CRITICAL)
+    werkzeug_logger.propagate = False
+
+    flask_logger = logging.getLogger("flask")
+    flask_logger.setLevel(logging.CRITICAL)
+    flask_logger.propagate = False
+
+    # Disable all loggers except CRITICAL
+    logging.getLogger().setLevel(logging.CRITICAL)
+
     templates_dir = str(Path(__file__).parent / 'templates')
     app = Flask(__name__, template_folder=templates_dir)
 
@@ -239,7 +251,7 @@ class Start_server:
                     "Please select one service to start server:\n1. [bold]Cloudflared[/bold] type [1]\n2. [bold]Ngrok[/bold] type [2]\n")
                 if service not in ["1", "2"]:
                     console.print(
-                        "[yellow][!] Please select from [1] for cloudflared\n[2] for ngrok[/yellow]\n")
+                        "[yellow][!] Please select from [1] for cloudflared [2] for ngrok[/yellow]\n")
                     continue
 
                 # tunneling service
