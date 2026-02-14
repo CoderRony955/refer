@@ -185,7 +185,7 @@ class OnStartup:
 
         # commands for referral directly through path
         referral_from_local_commands = Table(
-            title="COMMANDS FOR REFERRAL THROUGH LOCALLY", show_lines=True, border_style="yellow")
+            title="COMMANDS FOR REFERRAL THROUGH LOCAL PATHS", show_lines=True, border_style="yellow")
         referral_from_local_commands.add_column("command")
         referral_from_local_commands.add_column("for")
         referral_from_local_commands.add_column("example")
