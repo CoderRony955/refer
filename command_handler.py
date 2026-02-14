@@ -26,7 +26,8 @@ from referral.fromreferdb import (
 
 from referral.fromsystem import (
     refer,
-    referwith_message
+    referwith_message,
+    referwith_template
 )
 console = Console()
 
@@ -290,6 +291,55 @@ class Handler:
 
         return True
 
+    def referwith_message_with_template_through_paths(self, command: str):
+        """Handle referwith template command to share multiple packages through their local paths in cool template with message
+        """
+        import shlex
+        try:
+            user_command = shlex.split(command.lower())
+        except ValueError:
+            console.print("[red]Invalid command format[/red]")
+            return False
+
+        # Expected pattern:
+        # referwith -template -message <msg> -paths <path1> <path2> ...
+
+        if len(user_command) < 5:
+            console.print(
+                "[red]Wrong use of[/red] referwith [red]command! To refer multiple packages through their local paths in cool template with custom message[/red]\n"
+                "[bold]Use like this:[/bold] referwith -template -message \"<your_message>\" -paths \"path 1\" \"path 2\" \"path 3\"  \"path 3\"\n"
+            )
+            return False
+
+        if (
+            user_command[0] != "referwith"
+            or user_command[1] != "-template"
+            or user_command[2] != "-message"
+            or "-paths" not in user_command
+        ):
+            console.print("[red]Invalid referwith -template command[/red]")
+            return False
+
+        paths_index = user_command.index("-paths")
+
+        # message is right after -message
+        message = user_command[3]
+
+        # everything after -paths is a package name
+        paths = user_command[paths_index + 1:]
+
+        if not paths:
+            console.print("[red]No package paths provided[/red]")
+            return False
+
+        local_paths = [Filter.word(path) for path in paths]
+        referwith_template.referwith_template_th_path(
+            paths=local_paths,
+            message=Filter.word(message)
+        )
+
+        return True
+
     async def main_handler(self):
         """Main handler
         """
@@ -403,6 +453,13 @@ class Handler:
                 # to refer multiple packages with message through paths
                 elif user.lower().startswith("referwith -message") and "-paths" in user.lower():
                     handle = self.referwith_message_through_paths(
+                        user.lower())
+                    if not handle:
+                        continue
+
+                # to refer multiple packages through paths with message and with cool available template options
+                elif user.lower().startswith("referwith -template") and "-paths" in user.lower():
+                    handle = self.referwith_message_with_template_through_paths(
                         user.lower())
                     if not handle:
                         continue
