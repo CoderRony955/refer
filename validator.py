@@ -19,18 +19,13 @@ class Validate:
         """Validate given path 
         """
         try:
-            target_path = ""
-            if path.startswith("\'"):
-                target_path = path.replace("\'", "")
-
-            elif path.startswith("\"", ""):
-                target_path = path.replace("\"", "")
-
-            if not os.path.exists(path=target_path):
+            target_path = str(path).strip().strip("'\"")
+            if not target_path:
                 return False
-            return True
+            return os.path.exists(target_path)
         except Exception as e:
-            return e
+            console.print(f"[yellow][!] Invalid path check: {e}[/yellow]")
+            return False
 
     @staticmethod
     def packages(pkgs: list[str]):

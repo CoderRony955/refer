@@ -5,13 +5,15 @@ from rich.console import Console
 from rich.prompt import Prompt
 from pathlib import Path
 from pyngrok import ngrok
+from dotenv import load_dotenv
+import multiprocessing
 import subprocess
 import logging
 import shutil
 import sys
 import re
-import multiprocessing
 
+load_dotenv(dotenv_path="./env")
 
 console = Console()
 

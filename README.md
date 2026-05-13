@@ -1,93 +1,88 @@
-# refer
+﻿# refer
 
-## Manage & share projects from your machine
+## Share local project folders from your machine
 
-refer is a small CLI tool to manage local project paths and share them instantly with friends by generating one-click downloadable links from your system (no cloud upload required).
+`refer` is a CLI tool that helps you share local folders quickly by generating one-click downloadable links and simple HTML share pages.
 
-Key features
-- Manage a local collection of project paths (add / update / list / rename / delete)
-- Generate single-package download links or multi-package HTML share pages (with optional templates and messages)
-- Keep your data local and secure behind a password stored in `referconfig.yaml`
-- Colorful, human-friendly terminal UI
-- No cloud upload required
+## Key Features
 
-Requirements
-- Python 3.13 or newer
-- Dependencies listed in `pyproject.toml`
+- Share one local folder instantly with `refer -path`.
+- Share multiple folders with a custom message using `referwith -message ... -paths ...`.
+- Share multiple folders with template output using `referwith -template -message ... -paths ...`.
+- Simple terminal UX with built-in `about`, `usage`, and `help`.
+
+## Requirements
+
+- Python `3.13+`
+- Dependencies from `requirements.txt` (or `pyproject.toml`)
+
 ## Installation
 
-### Install via pip
+### Option 1: pip
 
-1. Clone the repository:
 ```bash
 git clone https://github.com/CoderRony955/refer.git
 cd refer
-```
-
-1. Create a virtual environment and install dependencies:
-```bash
-python -m venv venv
-.\.venv\Scripts\Activate.bat
+python -m venv .venv
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+### Option 2: uv
 
-
-### Install via uv
-
-If you have `uv` installed, you can use it as a fast alternative package manager:
-
-1. Clone the repository:
 ```bash
 git clone https://github.com/CoderRony955/refer.git
 cd refer
-```
-
-2. Create a virtual environment:
-```bash
-python -m venv venv
-.\.venv\Scripts\Activate.bat
-```
-
-3. And sync dependencies:
-
-```powershell
 uv venv .venv
-.\.venv\Scripts\Activate.ps1
-uv pip install flask maskpass pyngrok pyyaml rich
+.\.venv\Scripts\activate
+uv pip install -r requirements.txt
 ```
 
-Run
----
-Start the CLI:
+## Run
 
 ```powershell
 python main.py
 ```
 
-On first run `refer` will prompt to create `referconfig.yaml` (set a password and optionally create a local `referdb` folder). After setup you can run any command.
+## Commands
 
-### Config and data
-- `referconfig.yaml` — stores your password, optional `referdb` location, and ngrok auth (created on first run)
-- If you enable local DB, a `referdb` folder is created and a `packages.json` file is used to store package records.
+### Basic
 
+- `about` - Show project intro and version.
+- `usage` - Show full usage docs and quick command reference.
+- `contribute` - Open the official GitHub repository.
+- `help` / `h` - Show command tables.
+- `quit` / `q` / `exit` - Exit the CLI.
 
-### Where to start
-- Run `usage` inside the app to see full documentation and examples.
-- See the full [command reference](COMMANDS.md) for concise examples and flags.
-- Run `about` for a quick project description and version.
+### Sharing (local paths)
+
+- `refer -path "<folder_path>"`
+- `referwith -message "<message>" -paths "<path1>" "<path2>" ...`
+- `referwith -template -message "<message>" -paths "<path1>" "<path2>" ...`
+
+### Examples
+
+```bash
+refer -path "C:\Users\You\Projects\my-tool"
+referwith -message "Useful utilities" -paths "C:\Tools\a" "C:\Tools\b"
+referwith -template -message "My tool bundle" -paths "C:\Tools\a" "C:\Tools\b" "C:\Tools\c"
+```
+
+## Where to Start
+
+- Run `about` for a quick overview.
+- Run `usage` for detailed docs.
+- Run `help` to see categorized command tables.
 
 ## Contributing
 
-Thank you for considering contributing! A minimal workflow:
+- Fork the repository.
+- Create a branch: `git checkout -b feat/my-change`
+- Make your changes and test locally: `python main.py`
+- Commit, push, and open a PR.
 
-- Fork the repository and create a feature branch: `git checkout -b feat/my-change`
-- Make changes and run the CLI locally to verify behavior: `python main.py`
-- Commit, push, and open a Pull Request describing your change.
-
-If you plan to add tests or CI, include instructions in your PR. Use the `contribute` command to open the project GitHub page.
+Use `contribute` inside the CLI to open the repo page.
 
 ## License
 
-refer is distributed under the [MIT License](https://github.com/CoderRony955/refer/blob/main/LICENSE).
-
+Distributed under the [MIT License](https://github.com/CoderRony955/refer/blob/main/LICENSE).

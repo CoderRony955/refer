@@ -1,5 +1,4 @@
-rich==14.3.2
-pyyaml==6.0.3
-maskpass==0.3.7
-pyngrok==7.5.0
-flask==3.1.2
+rich>=14.3.2
+python-dotenv>=1.2.2
+pyngrok>=7.5.0
+flask>=3.1.2

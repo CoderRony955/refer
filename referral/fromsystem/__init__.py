@@ -1,1 +1,0 @@
-from referral.fromsystem import *

@@ -1,1 +1,0 @@
-from referral.fromreferdb import *
