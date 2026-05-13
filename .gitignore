@@ -1,8 +1,8 @@
 # test files & folders
 test/
 
-# test configration file
-referconfig.yaml
+# enviornments vairable
+.env
 
 # Python-generated files
 __pycache__/

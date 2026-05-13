@@ -5,14 +5,16 @@ from rich.console import Console
 from rich.prompt import Prompt
 from pathlib import Path
 from pyngrok import ngrok
+from dotenv import load_dotenv
 import subprocess
 import shutil
 import sys
 import re
+  
 
+load_dotenv(dotenv_path="./env")
 
 console = Console()
-
 
 class Create_Tunnel_For_Non_Flask_Server:
     def __init__(self, port: str, path: str):

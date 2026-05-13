@@ -5,6 +5,7 @@ from server.flask_server import Start_server
 import shutil
 import json
 import os
+from urllib.parse import urlparse
 
 console = Console()
 
@@ -14,7 +15,7 @@ def choose_template():
     """
     try:
         # read templates.json
-        with open("./referral/templates.json", "r") as file:
+        with open("./operations/referral/templates.json", "r") as file:
             templates = json.load(file)
 
         while True:
@@ -47,16 +48,27 @@ def choose_template():
 def referwith_template_th_path(paths: list[str], message: str):
     try:
 
-        packages_paths = []  # to store all packages paths that are valid and found
+        package_paths = []
+        package_urls = []
+        invalid_inputs = []
 
-        for path in paths:
-            if Validate.path(path=Filter.word(path)):
-                packages_paths.append(path)
+        for raw in paths:
+            item = Filter.word(raw)
+            parsed = urlparse(item)
+            if parsed.scheme in ("http", "https"):
+                package_urls.append(item)
+            elif Validate.path(path=item):
+                package_paths.append(item)
+            else:
+                invalid_inputs.append(item)
 
-        if len(packages_paths) < 1:
+        if len(package_paths) < 1 and len(package_urls) < 1:
             console.print(
                 f"[yellow] [!] Unable to find packages with such paths.[/yellow]")
             return
+        if invalid_inputs:
+            console.print(
+                f"[yellow][!] Ignoring invalid inputs:[/yellow] {', '.join(invalid_inputs)}")
 
         template = choose_template()
 
@@ -68,10 +80,12 @@ def referwith_template_th_path(paths: list[str], message: str):
 
         os.makedirs(destination, exist_ok=True)
 
-        for folder in packages_paths:
+        for folder in package_paths:
             name = os.path.basename(folder)   # only folder name
             dst = os.path.join(destination, name)
             shutil.copytree(folder, dst, ignore=shutil.ignore_patterns('.git'))
+
+       
 
         shutil.make_archive(
             "./temphold/shareable_packages", "zip", destination
